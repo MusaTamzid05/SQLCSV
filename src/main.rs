@@ -1,12 +1,14 @@
 extern crate regex;
 
 mod sql_parser;
+mod csv_helper;
 use std::process;
 
 fn main() {
 
 
-    let sql = "SELECT COUNT(Data)";
+    let path = "./uspop.csv";
+    let sql = "SELECT COUNT(Population)";
 
     if !sql_parser::is_valid(sql) {
         println!("Its not a valid sql");
@@ -14,4 +16,15 @@ fn main() {
     } 
 
     let colname : &str = sql_parser::get_column(sql);
+    println!("{}" , colname);
+
+
+    if sql.contains("COUNT") {
+        csv_helper::count(colname , path);
+    } else if sql.contains("AVG") {
+
+    } else if sql.contains("MAX") {
+
+    }
+
 }
