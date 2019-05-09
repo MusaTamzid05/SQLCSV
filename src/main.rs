@@ -8,7 +8,7 @@ fn main() {
 
 
     let path = "./uspop.csv";
-    let sql = "SELECT MAX(Population)";
+    let sql = "SELECT MIN(Population)";
 
     if !sql_parser::is_valid(sql) {
         println!("Its not a valid sql");
@@ -26,6 +26,8 @@ fn main() {
 
     } else if sql.contains("MAX") {
         csv_helper::max(colname , path);
+    } else if sql.contains("MIN") {
+        csv_helper::min(colname , path);
 
     }
 

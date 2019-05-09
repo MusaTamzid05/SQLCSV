@@ -68,3 +68,27 @@ pub fn max(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
 
     Ok((println!("Max: {}" , max_value)))
 }
+
+
+pub fn min(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
+    let mut rdr = csv::Reader::from_path(filepath)?;
+    let mut min_value = 9999999999.00;
+
+    for result in rdr.deserialize() {
+        let record : Record = result?;
+
+        if record[colname].len() == 0 {
+            continue;
+        }
+
+
+        let value : f32 = record[colname].parse().unwrap();;
+
+        if value <  min_value{
+            min_value = value;
+        }
+    }
+
+
+    Ok((println!("Min : {}" , min_value)))
+}
