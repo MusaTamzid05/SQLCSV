@@ -7,7 +7,7 @@ type Record = HashMap<String , String>;
 
 pub fn count(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
     let mut rdr = csv::Reader::from_path(filepath)?;
-    let mut sum = 0;
+    let mut current_count = 0;
 
     for result in rdr.deserialize() {
         let record : Record = result?;
@@ -15,11 +15,11 @@ pub fn count(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
         if record[colname].len() == 0 {
             continue;
         }
-        sum += 1;
+        current_count += 1;
     }
 
 
-    Ok((println!("Count : {}" , sum)))
+    Ok((println!("Count : {}" , current_count)))
 }
 
 
