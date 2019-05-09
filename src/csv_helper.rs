@@ -44,3 +44,27 @@ pub fn avg(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
 
     Ok((println!("Avg: {}" , sum / current_count)))
 }
+
+
+pub fn max(colname : &str , filepath :&str)-> Result<() , Box<Error>> {
+    let mut rdr = csv::Reader::from_path(filepath)?;
+    let mut max_value = -9999999999.00;
+
+    for result in rdr.deserialize() {
+        let record : Record = result?;
+
+        if record[colname].len() == 0 {
+            continue;
+        }
+
+
+        let value : f32 = record[colname].parse().unwrap();;
+
+        if value >  max_value {
+            max_value = value;
+        }
+    }
+
+
+    Ok((println!("Max: {}" , max_value)))
+}

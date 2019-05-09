@@ -8,7 +8,7 @@ fn main() {
 
 
     let path = "./uspop.csv";
-    let sql = "SELECT AVG(Population)";
+    let sql = "SELECT MAX(Population)";
 
     if !sql_parser::is_valid(sql) {
         println!("Its not a valid sql");
@@ -25,6 +25,7 @@ fn main() {
         csv_helper::avg(colname , path);
 
     } else if sql.contains("MAX") {
+        csv_helper::max(colname , path);
 
     }
 
