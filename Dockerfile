@@ -1,4 +1,4 @@
-FROM rust:1.31
+FROM rust:slim
 
 RUN mkdir -p /rust_pro
 COPY . /rust_pro
