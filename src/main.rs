@@ -24,7 +24,6 @@ fn main() {
     } 
 
     let colname : &str = sql_parser::get_column(sql);
-    println!("{}" , colname);
 
 
     if sql.contains("COUNT") {
